@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (session('message'))
+        <div class="alert alert-success">{{ session('message') }}</div>
+    @endif
     {{ $user->name }}さん、こんにちは！
     @foreach ($posts as $post)
         <div class="container-fluid mt-20" style="margin-left:-10px;">
