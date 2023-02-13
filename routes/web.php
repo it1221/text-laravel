@@ -27,3 +27,6 @@ Route::post('/post/comment/store', 'CommentController@store')->name('comment.sto
 
 Route::get('/mypost', 'HomeController@mypost')->name('home.mypost');
 Route::get('/mycomment', 'HomeController@mycomment')->name('home.mycomment');
+
+Route::get('/contact/create', 'ContactController@create')->name('contact.create');
+Route::post('/contact/store', 'ContactController@store')->name('contact.store');
