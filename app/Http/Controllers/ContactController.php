@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactForm;
 
 class ContactController extends Controller
 {
@@ -20,6 +22,10 @@ class ContactController extends Controller
             'body' => 'required',
         ]);
         Contact::create($inputs);
+
+        Mail::to(config('mail.admin'))->send(new ContactForm($inputs));
+        Mail::to($inputs['email'])->send(new ContactForm($inputs));
+        
         return back()->with('message', '確認のメールを送信しました');
     }
 }

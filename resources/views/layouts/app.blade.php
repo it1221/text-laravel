@@ -17,7 +17,7 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resource/css/forum.css'])
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/forum.css') }}" rel="stylesheet">
 </head>
 
 <body>
