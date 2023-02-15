@@ -33,3 +33,5 @@ Route::get('/mycomment', 'HomeController@mycomment')->name('home.mycomment');
 
 Route::get('/contact/create', 'ContactController@create')->name('contact.create');
 Route::post('/contact/store', 'ContactController@store')->name('contact.store');
+
+Route::get('/profile/index', 'ProfileController@index')->name('profile.index');
