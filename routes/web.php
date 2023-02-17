@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,21 +18,32 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Auth::routes();
+// Auth::routes();
+Auth::routes(['verify' => true]);
+
 Route::get('/', function (){
     return view('auth.login');
 });
 
+Route::get('/contact/create', 'ContactController@create')->name('contact.create')->middleware('guest');
+Route::post('/contact/store', 'ContactController@store')->name('contact.store');
+
+Route::middleware(['verified'])->group(function() {
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/post', 'PostController');
+//リソースコントローラからupdateを除外
+Route::resource('/post', 'PostController', ['except' => ['update']]);
+//post.updateにミドルウェアをかける
+Route::put('/post/{post}', 'PostController@update')->middleware('can:update,post')->name('post.update');
 
 Route::post('/post/comment/store', 'CommentController@store')->name('comment.store');
 
 Route::get('/mypost', 'HomeController@mypost')->name('home.mypost');
 Route::get('/mycomment', 'HomeController@mycomment')->name('home.mycomment');
 
-Route::get('/contact/create', 'ContactController@create')->name('contact.create');
-Route::post('/contact/store', 'ContactController@store')->name('contact.store');
 
-Route::get('/profile/index', 'ProfileController@index')->name('profile.index');
+//管理者用画面
+Route::middleware(['can:admin'])->group(function() {
+    Route::get('/profile/index', 'ProfileController@index')->name('profile.index');
+});
+});
