@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-// Auth::routes();
-Auth::routes(['verify' => true]);
+Auth::routes();
+// Auth::routes(['verify' => true]);
 
 Route::get('/', function (){
     return view('auth.login');
@@ -28,7 +28,7 @@ Route::get('/', function (){
 Route::get('/contact/create', 'ContactController@create')->name('contact.create')->middleware('guest');
 Route::post('/contact/store', 'ContactController@store')->name('contact.store');
 
-Route::middleware(['verified'])->group(function() {
+// Route::middleware(['verified'])->group(function() {
 Route::get('/home', 'HomeController@index')->name('home');
 
 //リソースコントローラからupdateを除外
@@ -40,10 +40,15 @@ Route::post('/post/comment/store', 'CommentController@store')->name('comment.sto
 
 Route::get('/mypost', 'HomeController@mypost')->name('home.mypost');
 Route::get('/mycomment', 'HomeController@mycomment')->name('home.mycomment');
-
+Route::get('/profile/{user}/edit', 'ProfileController@edit')->name('profile.edit');
+Route::put('/profile/{user}', 'ProfileController@update')->name('profile.update');
 
 //管理者用画面
 Route::middleware(['can:admin'])->group(function() {
     Route::get('/profile/index', 'ProfileController@index')->name('profile.index');
+    Route::delete('/profile/delete/{user}', 'ProfileController@delete')->name('profile.delete');
+
+    Route::put('/roles/{user}/attach', 'RoleController@attach')->name('role.attach');
+    Route::put('/roles/{user}/detach', 'RoleController@detach')->name('role.detach');
 });
-});
+// });
