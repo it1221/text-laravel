@@ -10,15 +10,19 @@ class RoleController extends Controller
 {
     public function attach(Request $request, User $user)
     {
-        $roleId = request()->input('role');
+        $roleId = $request->role_id;
+        $userId = $request->user;
+        $user = User::find($userId);
         $user->roles()->attach($roleId);
-        return back();
+        return response()->json();
     }
 
-    public function detach(Request $request, User $user)
+    public function detach(Request $request)
     {
-        $roleId = request()->input('role');
+        $roleId = $request->role_id;
+        $userId = $request->user;
+        $user = User::find($userId);
         $user->roles()->detach($roleId);
-        return back();
+        return response()->json();
     }
 }

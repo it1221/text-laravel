@@ -79,22 +79,26 @@
                                                 {{ $role->name }}
                                             </td>
                                             <td>
-                                                <form method="post" action="{{ route('role.attach', $user) }}">
+                                                {{-- <form method="post" action="{{ route('role.attach', $user) }}">
                                                     @csrf
-                                                    @method('put')
-                                                    <input type="hidden" name="role" value="{{ $role->id }}">
-                                                    <button class="btn btn-primary"
-                                                        @if ($user->roles->contains($role)) disabled @endif>ロール追加</button>
-                                                </form>
+                                                    @method('put') --}}
+                                                {{-- <input type="hidden" id="not_has_role" name="role"
+                                                        value="{{ $role->id }}"> --}}
+                                                <button id="add_role_{{ $role->id }}"
+                                                    class="btn btn-primary @if ($user->roles->contains($role)) disabled @endif"
+                                                    data-user-id="{{ $user->id }}">ロール追加</button>
+                                                {{-- </form> --}}
                                             </td>
                                             <td>
-                                                <form method="post" action="{{ route('role.detach', $user) }}">
+                                                {{-- <form method="post" action="{{ route('role.detach', $user) }}">
                                                     @csrf
-                                                    @method('put')
-                                                    <input type="hidden" name="role" value="{{ $role->id }}">
-                                                    <button class="btn btn-danger"
-                                                        @if (!$user->roles->contains($role)) disabled @endif>ロール削除</button>
-                                                </form>
+                                                    @method('put') --}}
+                                                {{-- <input type="hidden" id="has_role" name="role"
+                                                    data-user-id="{{ $user->id }}" value="{{ $role->id }}"> --}}
+                                                <button id="delete_role_{{ $role->id }}"
+                                                    class="btn btn-danger @if (!$user->roles->contains($role)) disabled @endif"
+                                                    data-user-id="{{ $user->id }}">ロール削除</button>
+                                                {{-- </form> --}}
                                             </td>
                                         </tr>
                                     @endforeach

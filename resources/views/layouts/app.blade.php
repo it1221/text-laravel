@@ -16,8 +16,8 @@
     <script src="https://kit.fontawesome.com/13aebaa470.js" crossorigin="anonymous"></script>
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resource/css/forum.css'])
-    <link href="{{ asset('css/forum.css') }}" rel="stylesheet">
+    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resource/css/'])
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
 <body>

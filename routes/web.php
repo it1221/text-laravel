@@ -51,4 +51,7 @@ Route::middleware(['can:admin'])->group(function() {
     Route::put('/roles/{user}/attach', 'RoleController@attach')->name('role.attach');
     Route::put('/roles/{user}/detach', 'RoleController@detach')->name('role.detach');
 });
+
+// いいねボタン
+Route::get('/reply/nice/{post}', 'NiceController@nice')->name('nice');
 // });

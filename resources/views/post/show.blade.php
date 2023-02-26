@@ -35,8 +35,27 @@
                     style="height:300px;">
             @endif
         </div>
-        <div class="card-footer">
-            <span class="mr-2 float-right">
+        <div class="card-footer d-flex justify-content-between">
+            <span class="mr-2">
+
+                <!-- もし$niceがあれば＝ユーザーが「いいね」をしていたら -->
+                @if ($nice)
+                    <!-- 「いいね」取消用ボタンを表示 -->
+                    <i class="fas fa-regular fa-heart nice-toggle niced fa-lg" data-post-id="{{ $post->id }}"></i>
+                    <span class="nice-counter">
+                        <!-- 「いいね」の数を表示 -->
+                        {{ $post->nices->count() }}
+                    </span>
+                @else
+                    <!-- まだユーザーが「いいね」をしていなければ、「いいね」ボタンを表示 -->
+                    <i class="fas fa-regular fa-heart nice-toggle fa-lg" data-post-id="{{ $post->id }}"></i>
+                    <span class="nice-counter">
+                        <!-- 「いいね」の数を表示 -->
+                        {{ $post->nices->count() }}
+                    </span>
+                @endif
+            </span>
+            <span class="mr-2">
                 投稿日時 {{ $post->created_at->diffForHumans() }}
             </span>
         </div>
