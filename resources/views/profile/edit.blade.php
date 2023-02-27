@@ -96,7 +96,7 @@
                                                 {{-- <input type="hidden" id="has_role" name="role"
                                                     data-user-id="{{ $user->id }}" value="{{ $role->id }}"> --}}
                                                 <button id="delete_role_{{ $role->id }}"
-                                                    class="btn btn-danger @if (!$user->roles->contains($role)) disabled @endif"
+                                                    class="btn btn-danger @if ($user->id === $login_user->id && $role->id === 1) disabled @elseif (!$user->roles->contains($role)) disabled @endif"
                                                     data-user-id="{{ $user->id }}">ロール削除</button>
                                                 {{-- </form> --}}
                                             </td>
