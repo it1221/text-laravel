@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Role;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -20,7 +21,8 @@ class ProfileController extends Controller
     {
         $this->authorize('update', $user);
         $roles = Role::all();
-        return view('profile.edit', compact('user', 'roles'));
+        $login_user = Auth::user();
+        return view('profile.edit', compact('user', 'roles', 'login_user'));
     }
 
     public function update(User $user, Request $request)
