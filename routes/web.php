@@ -28,7 +28,7 @@ Route::get('/', function (){
 Route::get('/contact/create', 'ContactController@create')->name('contact.create')->middleware('guest');
 Route::post('/contact/store', 'ContactController@store')->name('contact.store');
 
-// Route::middleware(['verified'])->group(function() {
+Route::group(['middleware' => 'auth'],function() {
 Route::get('/home', 'HomeController@index')->name('home');
 
 //リソースコントローラからupdateを除外
@@ -54,4 +54,4 @@ Route::middleware(['can:admin'])->group(function() {
 
 // いいねボタン
 Route::get('/reply/nice/{post}', 'NiceController@nice')->name('nice');
-// });
+});
