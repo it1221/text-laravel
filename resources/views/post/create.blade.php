@@ -23,9 +23,9 @@
                 <form method="POST" action="{{ route('post.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="title">件名</label>
+                        <label for="title">件名：</label>
                         <input type="text" name="title" class="form-control" id="title" value="{{ old('title') }}"
-                            placeholder="件名を入力してください">
+                            placeholder="件名：">
                     </div>
 
                     <div class="form-group">
