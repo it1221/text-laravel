@@ -25,7 +25,7 @@
                     <div class="form-group">
                         <label for="title">タイトル</label>
                         <input type="text" name="title" class="form-control" id="title" value="{{ old('title') }}"
-                            placeholder="タイトルを入力してください">
+                            placeholder="タイトルを入力してくださいよっと">
                     </div>
 
                     <div class="form-group">
