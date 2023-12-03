@@ -53,7 +53,7 @@ class ProfileController extends Controller
             $inputs['avatar'] = $avatar;
         }
         $user->update($inputs);
-        return back()->with('message', '情報を更新しました');
+        return back()->with('message', '情報を更新しましたよっと');
     }
 
     public function delete(User $user)
@@ -63,6 +63,6 @@ class ProfileController extends Controller
             Storage::delete('public/avatar/'.$user->avatar);
         }
         $user->delete();
-        return back()->with('message', 'ユーザを削除しました');
+        return back()->with('message', 'ユーザを削除しましたよっと');
     }
 }
