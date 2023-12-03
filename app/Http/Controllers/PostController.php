@@ -52,7 +52,7 @@ class PostController extends Controller
             $post->image = $name;
         }
         $post->save();
-        return back()->with('message', '投稿を作成しました');
+        return back()->with('message', '投稿を作成しましたよっと');
     }
 
     /**
@@ -109,7 +109,7 @@ class PostController extends Controller
 
         $post->save();
 
-        return redirect()->route('post.show', $post)->with('message', '投稿を更新しました');
+        return redirect()->route('post.show', $post)->with('message', '投稿を更新しましたよっと');
     }
 
     /**
@@ -123,6 +123,6 @@ class PostController extends Controller
         $this->authorize('delete', $post);
         $post->comments()->delete();
         $post->delete();
-        return redirect()->route('home')->with('message', '投稿を削除しました');
+        return redirect()->route('home')->with('message', '投稿を削除しましたよっと');
     }
 }
